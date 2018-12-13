@@ -8,7 +8,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class DemoApplication {
-
+	
+	/**
+	 * 主程序
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
