@@ -21,7 +21,7 @@ public class HelloWorldController {
 	
 	@RequestMapping("/hello")
     public String index() {
-		System.out.println("进来");
+		System.out.println("进来了");
 		BaseCode b = (BaseCode) baseService.findById(10L);
 		
         return "Hello World";
