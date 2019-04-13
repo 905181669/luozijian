@@ -14,7 +14,7 @@ public class HelloWorldController {
 	@RequestMapping("/hello")
     public String index() {
 		System.out.println("进来");
-		System.out.println("进来2");
+		System.out.println("进来3");
         add();
         return "Hello World";
     }
