@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
+/**
+ * @author luozijian
+ */
 @RestController
 public class HelloWorldController {
 
@@ -13,7 +16,7 @@ public class HelloWorldController {
 	
 	@RequestMapping("/hello")
     public String index() {
-		System.out.println("2019-4-13 23:25修改提交");
+		System.out.println("2019-4-27 17:04修改提交");
         add();
         return "Hello World";
     }
@@ -21,5 +24,7 @@ public class HelloWorldController {
 	private void add(){
 	    System.out.println(1);
     }
-	
+
+
+
 }
