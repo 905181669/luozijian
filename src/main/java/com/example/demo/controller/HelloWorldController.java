@@ -17,6 +17,7 @@ public class HelloWorldController {
 	@RequestMapping("/hello")
     public String index() {
 		System.out.println("2019-4-27 20:34修改提交");
+		System.out.println("2019-4-29 21:25 luozijain_dev分支修改提交");
         add();
         return "Hello World";
     }
