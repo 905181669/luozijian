@@ -1,8 +1,18 @@
+spring:
+  profiles:
+    active: dev
+
+
 spring.application.name: luozijian-service
 server.port: 8080
 #------------日志-------------------
 logging:
   config: classpath:logback-spring.xml
   path: /data/deploy/log/${spring.application.name}
+  level:
+    com.example.demo.mapper: debug
 
-
+#-------------mybatis---------------
+mybatis:
+  mapper-location: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity
