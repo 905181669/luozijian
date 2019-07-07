@@ -38,3 +38,11 @@ mapper:
   identity: MYSQL
 
 spring.devtools.restart.enabled: true
+
+
+#--------------eureka------------------
+eureka:
+  client:
+    service-url:
+      #向三个服务端分别注册
+      defaultZone: http://192.168.1.61:8088/eureka/
