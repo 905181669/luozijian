@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>打卡</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!--    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>-->
+</head>
+<body>
+<div class="container">
+
+    <div class="row" >
+        <form role="form" action="/record/beginStudy" method="post">
+            <div class="form-group">
+                <label for="type">学习内容类型</label>
+                <select id="type" name="studyContentType" class="form-control">
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default btn-success">开始打卡</button>
+        </form>
+    </div>
+
+
+    <div class="row" >
+        <table class="table" id="recordList">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>打卡时间</th>
+                <th>学习内容</th>
+                <th>结束时间</th>
+                <th>持续时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+    <div class="row" >
+        <form role="form" action="/studyContentType/saveStudyContentType" method="post">
+
+            <div class="form-group">
+                <label for="name">学习内容名称</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="请输入学习内容名称">
+            </div>
+
+            <div class="form-group">
+                <label for="code">代码</label>
+                <input type="text" class="form-control" id="code" name="code" placeholder="请输入代码值">
+            </div>
+
+            <div class="form-group">
+                <label for="rank">排序</label>
+                <input type="text" class="form-control" id="rank" name="rank" placeholder="排序">
+            </div>
+
+            <div class="form-group">
+                <label for="parentId">父</label>
+                <select name="parentId" id="parentId" class="form-control">
+                    <option value="0">请选择</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-default btn-success">保存</button>
+        </form>
+    </div>
+
+
+</div>
+
+    <script>
+
+
+        function getStudyContentTypeList(){
+            $.get("/studyContentType/getStudyContentTypeList", function(data){
+                for(var i = 0; i < data.data.length; i++){
+                    var item = data.data[i];
+                    $("#type").append("<option value="+ item.code +">" + item.name + "</option>");
+                    $("#parentId").append("<option value="+ item.id +">" + item.name + "</option>");
+                }
+            });
+        }
+
+        getStudyContentTypeList();
+
+
+        function getStudyRecordList(){
+            $.get("/record/getStudyRecordList", function(data){
+                for(var i = 0; i < data.data.length; i++){
+                    var item = data.data[i];
+                    console.log(item)
+                    var content = "<tr><td>"+item.id+"</td><td>"+item.addTime+"</td><td>"+item.studyContentType+"</td><td>"+item.endTime+"</td><td>"+item.duration+"</td><td><a onclick=stopStudy("+item.id+")>收工</a></td></tr>"
+                    $("#recordList tbody").append(content);
+                }
+            })
+        }
+
+        getStudyRecordList();
+
+        function stopStudy(id){
+            $.post("/record/stopStudy",{id:id},function(data){
+                alert(data.message)
+            })
+        }
+
+
+
+    </script>
+</body>
+</html>

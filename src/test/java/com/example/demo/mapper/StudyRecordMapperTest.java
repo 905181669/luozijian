@@ -20,7 +20,6 @@ public class StudyRecordMapperTest {
 
     @Test
     public void test(){
-        StudyRecord record = mapper.getStudyRecordById(1);
-        System.out.println(record);
+        mapper.selectAll();
     }
 }

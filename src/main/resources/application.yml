@@ -1,7 +1,19 @@
 spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+  # 后缀
+    suffix: .html
+  # 模板格式
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    servlet:
+      content-type: text/html
+
   profiles:
     active: dev
-
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 spring.application.name: luozijian-service
 server.port: 8080
@@ -10,9 +22,16 @@ logging:
   config: classpath:logback-spring.xml
   path: /data/deploy/log/${spring.application.name}
   level:
-    com.example.demo.mapper: debug
+    com.example.demo.mapper: DEBUG
+
 
 #-------------mybatis---------------
 mybatis:
   mapper-location: classpath:mapper/*.xml
   type-aliases-package: com.example.demo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+mapper:
+  mappers: com.example.demo.common.mapper.BaseMapper
+  identity: MYSQL
