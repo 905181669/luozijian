@@ -14,16 +14,51 @@
 <div class="container">
 
     <div class="row" >
-        <form role="form" action="/record/beginStudy" method="post">
-            <div class="form-group">
-                <label for="type">学习内容类型</label>
-                <select id="type" name="studyContentType" class="form-control">
-                </select>
-            </div>
-            <button type="submit" class="btn btn-default btn-success">开始打卡</button>
-        </form>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <form role="form" action="/record/beginStudy" method="post">
+                <div class="form-group">
+                    <label for="type">学习内容类型</label>
+                    <select id="type" name="studyContentType" class="form-control">
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default btn-success">开始打卡</button>
+            </form>
+        </div>
+
+
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <form role="form" action="/studyContentType/saveStudyContentType" method="post">
+
+                <div class="form-group">
+                    <label for="name">学习内容名称</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="请输入学习内容名称">
+                </div>
+
+                <div class="form-group">
+                    <label for="code">代码</label>
+                    <input type="text" class="form-control" id="code" name="code" placeholder="请输入代码值">
+                </div>
+
+                <div class="form-group">
+                    <label for="rank">排序</label>
+                    <input type="text" class="form-control" id="rank" name="rank" placeholder="排序">
+                </div>
+
+                <div class="form-group">
+                    <label for="parentId">父</label>
+                    <select name="parentId" id="parentId" class="form-control">
+                        <option value="0">请选择</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-default btn-success">保存</button>
+            </form>
+
+        </div>
     </div>
 
+
+    <hr/>
 
     <div class="row" >
         <table class="table" id="recordList">
@@ -43,38 +78,6 @@
         </table>
     </div>
 
-
-
-
-
-    <div class="row" >
-        <form role="form" action="/studyContentType/saveStudyContentType" method="post">
-
-            <div class="form-group">
-                <label for="name">学习内容名称</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="请输入学习内容名称">
-            </div>
-
-            <div class="form-group">
-                <label for="code">代码</label>
-                <input type="text" class="form-control" id="code" name="code" placeholder="请输入代码值">
-            </div>
-
-            <div class="form-group">
-                <label for="rank">排序</label>
-                <input type="text" class="form-control" id="rank" name="rank" placeholder="排序">
-            </div>
-
-            <div class="form-group">
-                <label for="parentId">父</label>
-                <select name="parentId" id="parentId" class="form-control">
-                    <option value="0">请选择</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-default btn-success">保存</button>
-        </form>
-    </div>
 
 
 </div>
@@ -100,7 +103,7 @@
                 for(var i = 0; i < data.data.length; i++){
                     var item = data.data[i];
                     console.log(item)
-                    var content = "<tr><td>"+item.id+"</td><td>"+item.addTime+"</td><td>"+item.studyContentType+"</td><td>"+item.endTime+"</td><td>"+item.duration+"</td><td><a onclick=stopStudy("+item.id+")>收工</a></td></tr>"
+                    var content = "<tr><td>"+item.id+"</td><td>"+item.addTime+"</td><td>"+item.studyContentType+"</td><td>"+item.endTime+"</td><td>"+item.duration+"</td><td><button role='button' class='btn btn-sm btn-warning' onclick=stopStudy("+item.id+")>收工</button></td></tr>"
                     $("#recordList tbody").append(content);
                 }
             })

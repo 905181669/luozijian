@@ -14,4 +14,6 @@ public class Test1 {
         Map<String, String> map = Maps.newHashMap("k1","v1");
         log.info(map.toString());
     }
+
+
 }
